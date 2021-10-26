@@ -42,12 +42,8 @@ const AboutSociety = ({navigation}) => {
                  <Text>society</Text>
                 </View>
                 <View style={styles.inputSubContainer}>
-                <Ionicons name="fiber_pin"  size={30}/>
-                <Feather
-                 name="fiber_pin" size={22}
-                 color='black'
-                 />
-                <Icon name="fiber_pin" size={22}
+                
+                <Icon name="fiber-pin" size={22}
                     color='black'
                     style={{marginRight:10}}/>
                  <Text>society</Text>
