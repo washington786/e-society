@@ -3,6 +3,7 @@ import { View,SafeAreaView, Text ,StyleSheet,Image,StatusBar,FlatList,
     TouchableOpacity} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import Ionicons from "react-native-vector-icons/Ionicons"
+import Feather from 'react-native-vector-icons/Feather'
 import { Display } from '../utils';
 const VerificationOTPScreen = ({navigation}) => {
     const firstInput =useRef()
@@ -20,8 +21,8 @@ const VerificationOTPScreen = ({navigation}) => {
             <View style={styles.headerContainer} 
             >
                
-            <Ionicons name="chevron-back-outline" size={30}
-            onPress={()=>navigation.goBack()}/>
+               <Feather name="arrow-left" size={30}
+             onPress={()=>navigation.goBack()} /> 
             <Text style={styles.headerTitle}></Text>
             </View>
             <View style={{alignItems:'center',marginTop:-60}}>

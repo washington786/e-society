@@ -1,43 +1,39 @@
-import React,{useState} from 'react';
-import { View,SafeAreaView, Text ,StatusBar,Image,StyleSheet,
-    TextInput,TouchableOpacity,CheckBox} from 'react-native';
+import React,{useState} from 'react'
+import { StyleSheet, Text, View,SafeAreaView ,StatusBar,TextInput,
+TouchableOpacity} from 'react-native'
 import { Formik } from 'formik';
 import * as yup from 'yup'
 import Ionicons from "react-native-vector-icons/Ionicons"
 import Feather from "react-native-vector-icons/Feather"
 import Icon from "react-native-vector-icons/MaterialIcons"
-import Separator from '../data/Separator.jsx';
-
+import FontAwesome from "react-native-vector-icons/FontAwesome"
 import {Display} from '../utils'
-const SignIn=({navigation})=>{
+const AccountDetails = ({navigation}) => {
     const [isPasswordShow,setPasswordShow]=useState(false)
     const [isSelected,setSelection]=useState(false)
     const ReviewSchem =yup.object({
+        user:yup.string().required().min(6),
         email:yup.string().required().min(6),
+        phonenumber:yup.string().required().min(10),
         password:yup.string().required().min(6),
+        confirmpassword:yup.string().required().min(6),
     })
-    return(
+    return (
+        
         <SafeAreaView>
             <StatusBar
             backgroundColor="#0225A1"
             barStyle="light-content"
             />
-            <View>
               
-            <View style={styles.headerContainer} 
-            >
-                <Separator
-            height={StatusBar.currentHeight}
-            />
-            <Feather name="arrow-left" size={30}
+              <View style={styles.headerContainer} > 
+              <Feather name="arrow-left" size={30}
              onPress={()=>navigation.goBack()} /> 
-            <Text style={styles.headerTitle}></Text>
-            </View>
-            <View style={{alignItems:'center',marginTop:-60}}>
-                <Image source={require('../images/logo.png')}/>
-            </View>
-            <Formik 
-               initialValues={{email:'',password:''}}
+              
+              <Text style={styles.headerTitle}>Account Settings</Text>
+              </View>
+              <Formik 
+               initialValues={{email:'',user:'',phonenumber:'',password:'',confirmpassword:''}}
                validationSchema={ReviewSchem}
                onSubmit={(values,action)=>{
                    action.resetForm()
@@ -46,7 +42,24 @@ const SignIn=({navigation})=>{
                >
                    {(props)=>(
                        <View>
-            <View style={[styles.inputContainer,{marginTop:30}]}>
+            <View style={[styles.inputContainer]}>
+                <View style={styles.inputSubContainer}>
+                    <FontAwesome name="user" size={22}
+                   style={{marginRight:10}} />
+                    
+                    
+                    <TextInput placeholder="Enter your name"
+                    selectionColor='gainsboro'
+                    onChangeText={props.handleChange('user')}
+                    value={props.values.email}
+                    onBlur={props.handleBlur('user')}
+                    style={styles.inputText}
+                    />
+                </View>
+             
+            </View>
+            <Text style={styles.errortext}>{props.touched.user && props.errors.user}</Text>
+            <View style={[styles.inputContainer]}>
                 <View style={styles.inputSubContainer}>
                     <Icon name="email" size={22}
                     color='black'
@@ -63,7 +76,24 @@ const SignIn=({navigation})=>{
              
             </View>
             <Text style={styles.errortext}>{props.touched.email && props.errors.email}</Text>
-            <Separator height={15}/>
+            <View style={[styles.inputContainer]}>
+                <View style={styles.inputSubContainer}>
+                    <Icon name="phone" size={22}
+                    color='black'
+                    style={{marginRight:10}}/>
+                    
+                    <TextInput placeholder="Phone Number"
+                    selectionColor='gainsboro'
+                    keyboardType="numeric"
+                    onChangeText={props.handleChange('phonenumber')}
+                    value={props.values.phonenumber}
+                    onBlur={props.handleBlur('phonenumber')}
+                    style={styles.inputText}
+                    />
+                </View>
+             
+            </View>
+            <Text style={styles.errortext}>{props.touched.phonenumber && props.errors.phonenumber}</Text>
             <View style={styles.inputContainer}>
                 <View style={styles.inputSubContainer}>
                 <Icon name="lock" size={22}
@@ -87,89 +117,72 @@ const SignIn=({navigation})=>{
 
             </View>
             <Text style={styles.errortext}>{props.touched.password && props.errors.password}</Text>
-            <Text></Text>
-            <View style={styles.forgotPasswordContainer}>
-                <View style={styles.toggleContainer}>
-                    <CheckBox
-                    value={isSelected}
-                    onValueChange={setSelection}
-                    style={styles.checkbox}/>
-                    
-                    <Text style={styles.rememberMeText}>Remember me</Text>
+            <View style={styles.inputContainer}>
+                <View style={styles.inputSubContainer}>
+                <Icon name="lock" size={22}
+                    color='black'
+                    style={{marginRight:10}}/>
+                 <TextInput
+                 secureTextEntry={isPasswordShow? false :true}
+                 placeholder="Confirm your Password"
+                 selectionColor='gainsboro'
+                 onChangeText={props.handleChange('confirmpassword')}
+                value={props.values.confirmpassword}
+                 onBlur={props.handleBlur('confirmpassword')}
+                 style={styles.inputText}/>
+                 <Feather
+                 name="eye-off" size={22}
+                 color='black'
+                 style={{marginRight:10}}
+                 onPress={()=>setPasswordShow(!isPasswordShow)}
+                 />
                 </View>
-                <Text style={styles.forgotPasswordText}
-                onPress={()=>navigation.navigate('forgetPassword')}
-                >Forget Password</Text>
+
             </View>
-    
+            <Text style={styles.errortext}>{props.touched.confirmpassword && props.errors.confirmpassword}</Text>
+            <Text></Text>
             <TouchableOpacity style={styles.signinButton}
             onPress={()=>navigation.navigate('AccountDetails')}>
-                <Text style={styles.signinButtonText}>LOGIN</Text>
+                <Text style={styles.signinButtonText}>UPDATE</Text>
             </TouchableOpacity>
-            <View style={styles.signupContainer}>
-                <Text style={styles.accountText}>
-                    Don't have account?
-                </Text>
-                <Text style={styles.signupText}
-                onPress={()=>navigation.navigate('Signup')}
-                >Sign Up</Text>
-            </View>
+            
             </View>)}
             </Formik> 
-            
-        </View>
-            
         </SafeAreaView>
     )
 }
-const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        backgroundColor:'#fff'
-        
-    },
-    headerContainer:{
-       flexDirection:'row' ,
-       alignItems:'center',
-       justifyContent:'center',
-       paddingVertical:40,
-       paddingHorizontal:20
-    },
-    headerTitle:{
-      fontSize:20,
-      lineHeight:20 * 1.4,
-      width:Display.setWidth(80),
-      textAlign:'center'  
 
-    },
-    title:{
-fontSize:20,
-lineHeight:20 * 1.4,
-marginTop:50,
-marginBottom:10,
-marginHorizontal:20
-    },
-    content:{
-        fontSize:20,
-        marginTop:10,
-        marginBottom:20,
-        marginHorizontal:20,
-    },
-    inputContainer:{
+export default AccountDetails
+
+const styles = StyleSheet.create({
+    headerContainer:{
+        flexDirection:'row' ,
+        alignItems:'center',
+        justifyContent:'center',
+        paddingVertical:40,
+        paddingHorizontal:20
+     },
+     headerTitle:{
+       fontSize:20,
+       lineHeight:20 * 1.4,
+       width:Display.setWidth(80),
+       textAlign:'center'  
+ 
+     },
+     inputContainer:{
         backgroundColor:'#F5F5F5',
         paddingHorizontal:10,
         marginHorizontal:20,
         borderRadius:8,
-        borderWidth:0.5,
-        borderColor:'black',
         justifyContent:'center',
-        borderWidth:1,
-        padding:10,
+        borderBottomWidth:2,
+        borderBottomColor:'black', 
        marginBottom:-10
     },
     inputSubContainer:{
         flexDirection:'row',
-        alignItems:'center'
+        alignItems:'center',
+        
     },
     inputText:{
         fontSize:18,
@@ -180,26 +193,8 @@ marginHorizontal:20
         flex:1
 
     },
-    forgotPasswordContainer:{
-        marginHorizontal:20,
-        flexDirection:'row',
-        alignItems:'center',
-        justifyContent:'space-between',
-        padding:10
-
-    },
-    rememberMeText:{
-        marginLeft:10,
-        fontSize:12,
-        lineHeight:12 * 1.4,
-        color:'grey'
-    },
-    forgotPasswordText:{
-        fontSize:12,
-        lineHeight:12 * 1.4,
-        color:'#0225A1',
-        fontWeight:'bold'
-    },
+    
+    
     signinButton:{
         backgroundColor:'#0225A1',
         borderRadius:8,
@@ -222,26 +217,6 @@ marginHorizontal:20
         color:'#fff',
         
     },
-    signupContainer:{
-        marginHorizontal:20,
-        justifyContent:'center',
-        paddingVertical:70,
-        flexDirection:'row',
-        alignItems:'center',
-        
-    },
-    accountText:{
-        fontSize:13,
-        lineHeight:13 * 1.4,
-        color:'black'
-    },
-    signupText:{
-        fontSize:13,
-        lineHeight:13 * 1.4,
-        color:'#0225A1',
-        marginLeft:5,
-
-    },
     errortext:{
         color:'red',
         paddingHorizontal:20,
@@ -249,15 +224,4 @@ marginHorizontal:20
         justifyContent:'center',
         padding:10,
     },
-    toggleContainer:{
-        flexDirection:"row",
-        alignItems:"center"
-    },
-    checkbox:{
-        color:'#0225A1'
-    }
-   
-
 })
-
-export default SignIn
