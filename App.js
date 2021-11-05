@@ -12,6 +12,8 @@ import DashBoard from './components/screens/DashBoard';
 import VerificationOTPScreen from './components/screens/VerificationOTPScreen';
 import AboutSociety from './components/screens/AboutSociety';
 import AccountDetails from './components/screens/AccountDetails';
+import CardAddedSucces from './components/screens/CardAddedSucces';
+import BookingEvent from './components/screens/BookingEvent';
 // navigator
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -34,6 +36,8 @@ export default function App() {
         <Stack.Screen name="ForgetScreen" component={ForgetPassword} />
         <Stack.Screen name="AboutSociety" component={AboutSociety} />
         <Stack.Screen name="AccountDetails" component={AccountDetails} />
+        <Stack.Screen name="CardAddedSucces" component={CardAddedSucces} />
+        <Stack.Screen name="BookingEvent" component={BookingEvent} />
         <Stack.Screen name="ForgetPasswordSuccessFul" component={ForgetPasswordSuccessFul} />
         <Stack.Screen name="Dashboard" component={DashBoard} />
       </Stack.Navigator>

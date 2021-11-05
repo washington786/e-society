@@ -7,44 +7,46 @@ import Icon from "react-native-vector-icons/MaterialIcons"
 const AboutSociety = ({navigation}) => {
     return (
         <View style={styles.container}>
+            
             <StatusBar
-            backgroundColor="#0225A1"
+            backgroundColor="grey"
             barStyle="light-content"
             />
-            <View style={styles.headerContainer} >   
-            <Feather name="arrow-left" size={30}
+             <View style={styles.headerContainer} > 
+              <Feather name="menu" size={30}  color='#fff'  
              onPress={()=>navigation.goBack()} /> 
-            <Text style={styles.headerTitle}>About Society</Text>
-            </View>
+              
+              <Text style={styles.headerTitle}>About Society</Text>
+              </View>
             <View style={styles.boxcontainer}>
                 <View style={styles.inputSubContainer}>
                 <Icon name="group" size={22}
-                    color='black'
+                    color='#0225A1'
                     style={{marginRight:10}}/>
                  <Text>society</Text>
                 </View>
                 <View style={styles.inputSubContainer}>
-                <Ionicons name="documents" size={30}/>
+                <Ionicons name="documents" color='#0225A1' size={30}/>
                 
                  <Text>society</Text>
                 </View>
                 <View style={styles.inputSubContainer}>
                 
-                <Ionicons name="location" size={30}/>
+                <Ionicons name="location" color='#0225A1' size={30}/>
                  <Text>society</Text>
                 </View>
                 <View style={styles.inputSubContainer}>
                 
                 <Feather
                  name="calendar" size={22}
-                 color='black'
+                 color='#0225A1'
                  />
                  <Text>society</Text>
                 </View>
                 <View style={styles.inputSubContainer}>
                
                 <Icon name="fiber-pin" size={22}
-                    color='black'
+                    color='#0225A1'
                     style={{marginRight:10}}/>
                  <Text>society</Text>
                 </View>
@@ -63,21 +65,28 @@ const styles = StyleSheet.create({
         flexDirection:'row' ,
         alignItems:'center',
         justifyContent:'center',
-        paddingVertical:40,
-        paddingHorizontal:20
+        paddingVertical:30,
+        paddingHorizontal:10,
+        backgroundColor:"#0225A1",
+        borderBottomWidth:1,
+       borderRadius:20,
+       marginTop:-20
+   
      },
      headerTitle:{
-         fontSize:20,
-         lineHeight:20 * 1.4,
-         width:Display.setWidth(80),
-         textAlign:'center'  
-   
-       },
+       fontSize:20,
+       lineHeight:20 * 1.4,
+       width:Display.setWidth(80),
+       textAlign:'center',
+       color:'#fff'  
+ 
+     },
        boxcontainer:{
            backgroundColor:'#DADADA',
            height:'60%',
            width:'80%',
-           marginLeft:40
+           marginLeft:40,
+           marginTop:60
        },
        inputContainer:{
         backgroundColor:'#F5F5F5',

@@ -142,7 +142,7 @@ const AccountDetails = ({navigation}) => {
             <Text style={styles.errortext}>{props.touched.confirmpassword && props.errors.confirmpassword}</Text>
             <Text></Text>
             <TouchableOpacity style={styles.signinButton}
-            onPress={()=>navigation.navigate('AccountDetails')}>
+            onPress={()=>navigation.navigate('CardAddedSucces')}>
                 <Text style={styles.signinButtonText}>UPDATE</Text>
             </TouchableOpacity>
             

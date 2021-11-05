@@ -68,6 +68,20 @@ const VerificationOTPScreen = ({navigation}) => {
                         text ? fifthInput.current.focus() : fourthInput.current.focus() }}/>
                 </View>
             </View>
+            <View style={[styles.inputContainer]}>
+                <View style={styles.inputSubContainer}>
+                    <Icon name="phone" size={22}
+                    color='black'
+                    style={{marginRight:10}}/>
+                    
+                    <TextInput placeholder="Enter PHONE NUMBER"
+                    selectionColor='gainsboro'
+
+                    style={styles.inputText}
+                    />
+                </View>
+             
+            </View>
             <TouchableOpacity style={styles.signinButton}
             onPress={()=>navigation.navigate('AboutSociety')} >
                 <Text style={styles.signinButtonText}>SUBMIT</Text>
@@ -148,6 +162,30 @@ const styles = StyleSheet.create({
         lineHeight:18 * 1.4,
         color:'#fff',
         
+    },
+    inputContainer:{
+        backgroundColor:'#F5F5F5',
+        paddingHorizontal:10,
+        marginHorizontal:20,
+        borderRadius:8,
+        justifyContent:'center',
+        borderBottomWidth:2,
+        borderBottomColor:'black', 
+       marginBottom:-10
+    },
+    inputSubContainer:{
+        flexDirection:'row',
+        alignItems:'center',
+        
+    },
+    inputText:{
+        fontSize:18,
+        textAlignVertical:'center',
+        padding:0,
+        height:Display.setHeight(6),
+        color:'black',
+        flex:1
+
     },
 })
 
