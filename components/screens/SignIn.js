@@ -7,7 +7,7 @@ const SignIn=()=>{
         <SafeAreaView>
             <View>
                 <Text>
-                    i'm sign in!
+                    i'm sign in!   i'm sign in!
                 </Text>
             </View>
         </SafeAreaView>
